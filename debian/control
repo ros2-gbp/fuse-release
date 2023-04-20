@@ -1,0 +1,12 @@
+Source: ros-iron-fuse-loss
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), libceres-dev, libqwt-qt5-dev <!nocheck>, qtbase5-dev <!nocheck>, ros-iron-ament-cmake-gtest <!nocheck>, ros-iron-ament-cmake-ros, ros-iron-ament-lint-auto <!nocheck>, ros-iron-ament-lint-common <!nocheck>, ros-iron-fuse-core, ros-iron-pluginlib, ros-iron-rclcpp, ros-iron-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-iron-fuse-loss
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libceres-dev, ros-iron-fuse-core, ros-iron-pluginlib, ros-iron-rclcpp, ros-iron-ros-workspace
+Description: The fuse_loss package provides a set of commonly used loss functions, such as the basic ones provided by Ceres.
