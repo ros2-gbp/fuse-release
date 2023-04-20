@@ -1,0 +1,12 @@
+Source: ros-iron-fuse-tutorials
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-iron-ament-cmake-ros, ros-iron-ament-lint-auto <!nocheck>, ros-iron-ament-lint-common <!nocheck>, ros-iron-fuse-constraints, ros-iron-fuse-core, ros-iron-fuse-models, ros-iron-fuse-variables, ros-iron-nav-msgs, ros-iron-rclcpp, ros-iron-sensor-msgs, ros-iron-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-iron-fuse-tutorials
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-iron-fuse-constraints, ros-iron-fuse-core, ros-iron-fuse-models, ros-iron-fuse-optimizers, ros-iron-fuse-publishers, ros-iron-fuse-variables, ros-iron-nav-msgs, ros-iron-rclcpp, ros-iron-rviz2, ros-iron-sensor-msgs, ros-iron-ros-workspace
+Description: Package containing source code for the fuse tutorials.
