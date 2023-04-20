@@ -1,0 +1,12 @@
+Source: ros-iron-fuse-models
+Section: misc
+Priority: optional
+Maintainer: Tom Moore <tmoore@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), libbenchmark-dev <!nocheck>, libboost-all-dev, libceres-dev, libeigen3-dev, ros-iron-ament-cmake-gmock <!nocheck>, ros-iron-ament-cmake-gtest <!nocheck>, ros-iron-ament-cmake-ros, ros-iron-ament-lint-auto <!nocheck>, ros-iron-ament-lint-common <!nocheck>, ros-iron-fuse-constraints, ros-iron-fuse-core, ros-iron-fuse-graphs, ros-iron-fuse-msgs, ros-iron-fuse-publishers, ros-iron-fuse-variables, ros-iron-geometry-msgs, ros-iron-nav-msgs, ros-iron-pluginlib, ros-iron-rclcpp, ros-iron-rclcpp-components, ros-iron-sensor-msgs, ros-iron-std-srvs, ros-iron-tf2, ros-iron-tf2-2d, ros-iron-tf2-geometry-msgs, ros-iron-tf2-ros, ros-iron-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-iron-fuse-models
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, libceres-dev, libeigen3-dev, ros-iron-fuse-constraints, ros-iron-fuse-core, ros-iron-fuse-graphs, ros-iron-fuse-msgs, ros-iron-fuse-publishers, ros-iron-fuse-variables, ros-iron-geometry-msgs, ros-iron-nav-msgs, ros-iron-pluginlib, ros-iron-rclcpp, ros-iron-rclcpp-components, ros-iron-sensor-msgs, ros-iron-std-srvs, ros-iron-tf2, ros-iron-tf2-2d, ros-iron-tf2-geometry-msgs, ros-iron-tf2-ros, ros-iron-ros-workspace
+Description: fuse plugins that implement various kinematic and sensor models
