@@ -1,0 +1,12 @@
+Source: ros-rolling-fuse-publishers
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ament-cmake-copyright <!nocheck>, ament-cmake-cppcheck <!nocheck>, ament-cmake-cpplint <!nocheck>, ament-cmake-flake8 <!nocheck>, ament-cmake-googletest <!nocheck>, ament-cmake-lint-cmake <!nocheck>, ament-cmake-pep257 <!nocheck>, ament-cmake-ros, ament-cmake-uncrustify <!nocheck>, ament-cmake-xmllint <!nocheck>, ament-lint <!nocheck>, libgeometry-msgs-dev, libnav-msgs-dev, libtf2-dev, libtf2-geometry-msgs-dev, libtf2-ros-dev, pluginlib-dev, python3-geometry-msgs, python3-nav-msgs, python3-tf2, python3-tf2-geometry-msgs, python3-tf2-ros, ros-geometry-msgs, ros-nav-msgs, ros-rolling-fuse-constraints <!nocheck>, ros-rolling-fuse-core, ros-rolling-fuse-graphs <!nocheck>, ros-rolling-fuse-msgs, ros-rolling-fuse-variables, ros-rolling-rclcpp, ros-rolling-rclcpp <!nocheck>, ros-rolling-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-rolling-fuse-publishers
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libgeometry-msgs-dev, libnav-msgs-dev, libtf2-dev, libtf2-geometry-msgs-dev, libtf2-ros-dev, pluginlib-dev, python3-geometry-msgs, python3-nav-msgs, python3-tf2, python3-tf2-geometry-msgs, python3-tf2-ros, ros-geometry-msgs, ros-nav-msgs, ros-rolling-fuse-core, ros-rolling-fuse-msgs, ros-rolling-fuse-variables, ros-rolling-rclcpp, ros-rolling-ros-workspace
+Description: The fuse_publishers package provides a set of common publisher plugins.
