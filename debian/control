@@ -1,0 +1,12 @@
+Source: ros-rolling-fuse-tutorials
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ament-cmake-copyright <!nocheck>, ament-cmake-cppcheck <!nocheck>, ament-cmake-cpplint <!nocheck>, ament-cmake-flake8 <!nocheck>, ament-cmake-lint-cmake <!nocheck>, ament-cmake-pep257 <!nocheck>, ament-cmake-ros, ament-cmake-uncrustify <!nocheck>, ament-cmake-xmllint <!nocheck>, ament-lint <!nocheck>, libnav-msgs-dev, libsensor-msgs-dev, python3-nav-msgs, python3-sensor-msgs, ros-nav-msgs, ros-rolling-fuse-constraints, ros-rolling-fuse-core, ros-rolling-fuse-models, ros-rolling-fuse-variables, ros-rolling-rclcpp, ros-sensor-msgs, ros-rolling-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-rolling-fuse-tutorials
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libnav-msgs-dev, libsensor-msgs-dev, python3-nav-msgs, python3-sensor-msgs, ros-nav-msgs, ros-rolling-fuse-constraints, ros-rolling-fuse-core, ros-rolling-fuse-models, ros-rolling-fuse-optimizers, ros-rolling-fuse-publishers, ros-rolling-fuse-variables, ros-rolling-rclcpp, ros-rolling-rviz2, ros-sensor-msgs, ros-rolling-ros-workspace
+Description: Package containing source code for the fuse tutorials.
