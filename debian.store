@@ -1,1 +1,1 @@
-{"base": "28f683c", "parent": "debian/rolling/fuse_constraints", "previous": "c54d660", "trim": "", "trimbase": ""}
+{"base": "183d8af", "parent": "debian/jazzy/fuse_constraints", "previous": "567ff07", "trim": "", "trimbase": ""}
