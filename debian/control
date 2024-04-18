@@ -1,0 +1,12 @@
+Source: ros-jazzy-fuse-tutorials
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ament-cmake-copyright <!nocheck>, ament-cmake-cppcheck <!nocheck>, ament-cmake-cpplint <!nocheck>, ament-cmake-flake8 <!nocheck>, ament-cmake-lint-cmake <!nocheck>, ament-cmake-pep257 <!nocheck>, ament-cmake-ros, ament-cmake-uncrustify <!nocheck>, ament-cmake-xmllint <!nocheck>, ament-lint <!nocheck>, libnav-msgs-dev, libsensor-msgs-dev, python3-nav-msgs, python3-sensor-msgs, ros-jazzy-fuse-constraints, ros-jazzy-fuse-core, ros-jazzy-fuse-models, ros-jazzy-fuse-variables, ros-jazzy-rclcpp, ros-nav-msgs, ros-sensor-msgs, ros-jazzy-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-fuse-tutorials
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libnav-msgs-dev, libsensor-msgs-dev, python3-nav-msgs, python3-sensor-msgs, ros-jazzy-fuse-constraints, ros-jazzy-fuse-core, ros-jazzy-fuse-models, ros-jazzy-fuse-optimizers, ros-jazzy-fuse-publishers, ros-jazzy-fuse-variables, ros-jazzy-rclcpp, ros-jazzy-rviz2, ros-nav-msgs, ros-sensor-msgs, ros-jazzy-ros-workspace
+Description: Package containing source code for the fuse tutorials.
