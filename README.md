@@ -1,3 +1,39 @@
+## fuse (iron) - 1.0.1-4
+
+The packages in the `fuse` repository were released into the `iron` distro by running `/usr/bin/bloom-release -t iron -r iron fuse --edit` on `Sat, 20 Apr 2024 15:50:37 -0000`
+
+These packages were released:
+- `fuse`
+- `fuse_constraints`
+- `fuse_core`
+- `fuse_doc`
+- `fuse_graphs`
+- `fuse_loss`
+- `fuse_models`
+- `fuse_msgs`
+- `fuse_optimizers`
+- `fuse_publishers`
+- `fuse_tutorials`
+- `fuse_variables`
+- `fuse_viz`
+
+Version of package(s) in repository `fuse`:
+
+- upstream repository: https://github.com/locusrobotics/fuse.git
+- release repository: https://github.com/ros2-gbp/fuse-release.git
+- rosdistro version: `1.0.1-3`
+- old version: `1.0.1-3`
+- new version: `1.0.1-4`
+
+Versions of tools used:
+
+- bloom version: `0.12.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.22.2`
+- rosdistro version: `0.9.0`
+- vcstools version: `0.1.42`
+
+
 ## fuse (rolling) - 1.0.1-2
 
 The packages in the `fuse` repository were released into the `rolling` distro by running `/usr/bin/bloom-release -r rolling fuse` on `Mon, 10 Apr 2023 16:18:24 -0000`
