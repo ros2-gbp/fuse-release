@@ -1,7 +1,7 @@
 /*
  * Software License Agreement (BSD License)
  *
- *  Copyright (c) 2020 Clearpath Robotics
+ *  Copyright (c) 2024, Clearpath Robotics, Locus Robotics
  *  All rights reserved.
  *
  *  Redistribution and use in source and binary forms, with or without
@@ -31,21 +31,11 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#ifndef FUSE_CORE__CERES_MACROS_HPP_
-#define FUSE_CORE__CERES_MACROS_HPP_
+#include <fuse_core/ceres_macros.hpp>
+#include <fuse_core/manifold_adapter.hpp>
 
-#include <ceres/version.h>
+#if CERES_SUPPORTS_MANIFOLDS
+#include <boost/serialization/export.hpp>
 
-/**
- * Check for at least Ceres Solver version x.y.z, where: x = major, y = minor and z = revision.
- */
-
-/* *INDENT-OFF* */  // Bypass uncrustify
-#define CERES_VERSION_AT_LEAST(x, y, z) (CERES_VERSION_MAJOR > x || (CERES_VERSION_MAJOR >= x && \
-                                        (CERES_VERSION_MINOR > y || (CERES_VERSION_MINOR >= y && \
-                                                                     CERES_VERSION_REVISION >= z))))
-/* *INDENT-ON* */
-
-#define CERES_SUPPORTS_MANIFOLDS CERES_VERSION_AT_LEAST(2, 1, 0)
-
-#endif  // FUSE_CORE__CERES_MACROS_HPP_
+BOOST_CLASS_EXPORT_IMPLEMENT(fuse_core::ManifoldAdapter);
+#endif
