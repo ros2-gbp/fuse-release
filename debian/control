@@ -1,0 +1,13 @@
+Source: ros-jazzy-fuse-core
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), libboost-all-dev, libceres-dev, libeigen3-dev, libgoogle-glog-dev, ros-jazzy-ament-cmake-gtest <!nocheck>, ros-jazzy-ament-cmake-pytest <!nocheck>, ros-jazzy-ament-cmake-ros, ros-jazzy-ament-lint-auto <!nocheck>, ros-jazzy-ament-lint-common <!nocheck>, ros-jazzy-fuse-msgs, ros-jazzy-geometry-msgs <!nocheck>, ros-jazzy-launch <!nocheck>, ros-jazzy-launch-pytest <!nocheck>, ros-jazzy-pluginlib, ros-jazzy-rcl-interfaces, ros-jazzy-rclcpp, ros-jazzy-rclcpp <!nocheck>, ros-jazzy-rclcpp-components, ros-jazzy-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-fuse-core
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, libceres-dev, libeigen3-dev, libgoogle-glog-dev, ros-jazzy-fuse-msgs, ros-jazzy-pluginlib, ros-jazzy-rcl-interfaces, ros-jazzy-rclcpp, ros-jazzy-rclcpp-components, ros-jazzy-ros-workspace
+Description: The fuse_core package provides the base class interfaces for the various fuse components.
+ Concrete implementations of these interfaces are provided in other packages.
