@@ -2,6 +2,12 @@
 Changelog for package fuse_publishers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.2.0 (2024-05-02)
+------------------
+
+1.1.1 (2024-05-02)
+------------------
+
 1.1.0 (2024-04-20)
 ------------------
 * Port support for Ceres 2.1.0 Manifold class into ROS 2 Rolling (`#366 <https://github.com/locusrobotics/fuse/issues/366>`_)
