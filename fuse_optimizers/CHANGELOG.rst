@@ -2,6 +2,9 @@
 Changelog for package fuse_optimizers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.2.0 (2024-05-02)
+------------------
+
 1.1.1 (2024-05-02)
 ------------------
 * Fix fuse optimizer unit test (`#369 <https://github.com/locusrobotics/fuse/issues/369>`_)
