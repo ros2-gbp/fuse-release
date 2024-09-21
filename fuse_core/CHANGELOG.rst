@@ -2,6 +2,14 @@
 Changelog for package fuse_core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.2.1 (2024-09-21)
+------------------
+* Fix CallbackWrapper class for the Rolling release
+  * Update for changes to the ROS2 Waitable base class
+  * implement pure virtual waitable functions as in https://github.com/ros2/system_tests/pull/548
+  Author: Henry Moore <henry.moore@picknik.ai>
+* Contributors: Stephen Williams
+
 1.2.0 (2024-05-02)
 ------------------
 
