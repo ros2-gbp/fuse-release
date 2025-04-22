@@ -1,1 +1,1 @@
-{"base": "8315763", "parent": "debian/rolling/fuse_variables", "previous": "c5e27b6", "trim": "", "trimbase": ""}
+{"base": "d09c90b89fcf", "parent": "debian/kilted/fuse_variables", "previous": "0726e966a160", "trim": "", "trimbase": ""}
