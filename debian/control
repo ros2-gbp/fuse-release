@@ -1,0 +1,12 @@
+Source: ros-kilted-fuse-graphs
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), libbenchmark-dev <!nocheck>, libceres-dev, ros-kilted-ament-cmake-gtest <!nocheck>, ros-kilted-ament-cmake-ros, ros-kilted-ament-lint-auto <!nocheck>, ros-kilted-ament-lint-common <!nocheck>, ros-kilted-fuse-core, ros-kilted-pluginlib, ros-kilted-rclcpp, ros-kilted-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-kilted-fuse-graphs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libceres-dev, ros-kilted-fuse-core, ros-kilted-pluginlib, ros-kilted-rclcpp, ros-kilted-ros-workspace
+Description: The fuse_graphs package provides some concrete implementations of the fuse_core::Graph interface.
