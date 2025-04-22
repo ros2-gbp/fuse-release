@@ -1,1 +1,1 @@
-{"base": "ac9969e", "parent": "debian/rolling/fuse_publishers", "previous": "cb232ee", "trim": "", "trimbase": ""}
+{"base": "3a9e9090a815", "parent": "debian/kilted/fuse_publishers", "previous": "de2b99183d4a", "trim": "", "trimbase": ""}
