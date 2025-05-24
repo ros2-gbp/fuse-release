@@ -1,0 +1,13 @@
+Source: ros-rolling-fuse-optimizers
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), libboost-all-dev, libceres-dev, libeigen3-dev, ros-rolling-ament-cmake, ros-rolling-ament-cmake-gtest <!nocheck>, ros-rolling-ament-cmake-ros, ros-rolling-ament-lint-auto <!nocheck>, ros-rolling-ament-lint-common <!nocheck>, ros-rolling-diagnostic-updater, ros-rolling-fuse-constraints, ros-rolling-fuse-core, ros-rolling-fuse-graphs, ros-rolling-fuse-models <!nocheck>, ros-rolling-fuse-msgs, ros-rolling-fuse-variables, ros-rolling-geometry-msgs <!nocheck>, ros-rolling-gtest-vendor, ros-rolling-launch <!nocheck>, ros-rolling-launch-pytest <!nocheck>, ros-rolling-launch-ros <!nocheck>, ros-rolling-nav-msgs <!nocheck>, ros-rolling-pluginlib, ros-rolling-rclcpp, ros-rolling-rclcpp <!nocheck>, ros-rolling-rclcpp-components, ros-rolling-std-srvs, ros-rolling-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-rolling-fuse-optimizers
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, libceres-dev, libeigen3-dev, ros-rolling-ament-cmake-ros, ros-rolling-diagnostic-updater, ros-rolling-fuse-constraints, ros-rolling-fuse-core, ros-rolling-fuse-graphs, ros-rolling-fuse-msgs, ros-rolling-fuse-variables, ros-rolling-gtest-vendor, ros-rolling-pluginlib, ros-rolling-rclcpp, ros-rolling-rclcpp-components, ros-rolling-std-srvs, ros-rolling-ros-workspace
+Description: The fuse_optimizers package provides a set of optimizer implementations.
+ An optimizer is the object responsible \ for coordinating the sensors and motion model inputs, computing the optimal state values, and providing access to \ to the optimal state via the publishers.
