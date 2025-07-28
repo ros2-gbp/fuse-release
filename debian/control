@@ -1,0 +1,12 @@
+Source: ros-jazzy-fuse-models
+Section: misc
+Priority: optional
+Maintainer: Tom Moore <tmoore@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), libbenchmark-dev <!nocheck>, libboost-all-dev, libceres-dev, libeigen3-dev, ros-jazzy-ament-cmake-gmock <!nocheck>, ros-jazzy-ament-cmake-gtest <!nocheck>, ros-jazzy-ament-cmake-ros, ros-jazzy-ament-lint-auto <!nocheck>, ros-jazzy-ament-lint-common <!nocheck>, ros-jazzy-fuse-constraints, ros-jazzy-fuse-core, ros-jazzy-fuse-graphs, ros-jazzy-fuse-msgs, ros-jazzy-fuse-publishers, ros-jazzy-fuse-variables, ros-jazzy-geometry-msgs, ros-jazzy-nav-msgs, ros-jazzy-pluginlib, ros-jazzy-rclcpp, ros-jazzy-rclcpp-components, ros-jazzy-sensor-msgs, ros-jazzy-std-srvs, ros-jazzy-tf2, ros-jazzy-tf2-2d, ros-jazzy-tf2-geometry-msgs, ros-jazzy-tf2-ros, ros-jazzy-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-fuse-models
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, libceres-dev, libeigen3-dev, ros-jazzy-fuse-constraints, ros-jazzy-fuse-core, ros-jazzy-fuse-graphs, ros-jazzy-fuse-msgs, ros-jazzy-fuse-publishers, ros-jazzy-fuse-variables, ros-jazzy-geometry-msgs, ros-jazzy-nav-msgs, ros-jazzy-pluginlib, ros-jazzy-rclcpp, ros-jazzy-rclcpp-components, ros-jazzy-sensor-msgs, ros-jazzy-std-srvs, ros-jazzy-tf2, ros-jazzy-tf2-2d, ros-jazzy-tf2-geometry-msgs, ros-jazzy-tf2-ros, ros-jazzy-ros-workspace
+Description: fuse plugins that implement various kinematic and sensor models
