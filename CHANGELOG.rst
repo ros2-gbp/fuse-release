@@ -2,6 +2,19 @@
 Changelog for package fuse_optimizers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.3.0 (2025-07-28)
+------------------
+
+1.2.4 (2025-07-28)
+------------------
+* Add diag mapping to rolling (`#412 <https://github.com/locusrobotics/fuse/issues/412>`_)
+  * mapping function is added.
+  * add unit test for the fixed lag smoother.
+  * fix lint warning.
+  * fix lint error.
+  * lint error fix.
+* Contributors: needphpsql
+
 1.2.3 (2025-05-24)
 ------------------
 
