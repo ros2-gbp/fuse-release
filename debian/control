@@ -1,0 +1,12 @@
+Source: ros-jazzy-fuse-publishers
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-jazzy-ament-cmake-gtest <!nocheck>, ros-jazzy-ament-cmake-ros, ros-jazzy-ament-lint-auto <!nocheck>, ros-jazzy-ament-lint-common <!nocheck>, ros-jazzy-fuse-constraints <!nocheck>, ros-jazzy-fuse-core, ros-jazzy-fuse-graphs <!nocheck>, ros-jazzy-fuse-msgs, ros-jazzy-fuse-variables, ros-jazzy-geometry-msgs, ros-jazzy-nav-msgs, ros-jazzy-pluginlib, ros-jazzy-rclcpp, ros-jazzy-rclcpp <!nocheck>, ros-jazzy-tf2, ros-jazzy-tf2-geometry-msgs, ros-jazzy-tf2-ros, ros-jazzy-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-fuse-publishers
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-jazzy-fuse-core, ros-jazzy-fuse-msgs, ros-jazzy-fuse-variables, ros-jazzy-geometry-msgs, ros-jazzy-nav-msgs, ros-jazzy-pluginlib, ros-jazzy-rclcpp, ros-jazzy-tf2, ros-jazzy-tf2-geometry-msgs, ros-jazzy-tf2-ros, ros-jazzy-ros-workspace
+Description: The fuse_publishers package provides a set of common publisher plugins.
