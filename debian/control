@@ -1,0 +1,12 @@
+Source: ros-rolling-fuse-viz
+Section: misc
+Priority: optional
+Maintainer: Enrique Fernandez <efernandez@clearpath.ai>
+Build-Depends: debhelper (>= 9.0.0), libeigen3-dev, qtbase5-dev, ros-rolling-ament-cmake, ros-rolling-ament-cmake-ros, ros-rolling-ament-lint-auto <!nocheck>, ros-rolling-ament-lint-common <!nocheck>, ros-rolling-fuse-constraints, ros-rolling-fuse-core, ros-rolling-fuse-msgs, ros-rolling-fuse-variables, ros-rolling-geometry-msgs, ros-rolling-gtest-vendor, ros-rolling-rviz-common, ros-rolling-rviz-rendering, ros-rolling-tf2-geometry-msgs, ros-rolling-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-rolling-fuse-viz
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libeigen3-dev, ros-rolling-ament-cmake-ros, ros-rolling-fuse-constraints, ros-rolling-fuse-core, ros-rolling-fuse-msgs, ros-rolling-fuse-variables, ros-rolling-geometry-msgs, ros-rolling-gtest-vendor, ros-rolling-rviz-common, ros-rolling-rviz-rendering, ros-rolling-tf2-geometry-msgs, ros-rolling-ros-workspace
+Description: The fuse_viz package provides visualization tools for fuse.
