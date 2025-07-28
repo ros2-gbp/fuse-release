@@ -2,6 +2,15 @@
 Changelog for package fuse_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.2.4 (2025-07-28)
+------------------
+
+1.2.3 (2025-05-24)
+------------------
+* Fix linter errors related to header ordering (`#407 <https://github.com/locusrobotics/fuse/issues/407>`_)
+* Removed deprecations warnings (`#406 <https://github.com/locusrobotics/fuse/issues/406>`_)
+* Contributors: Alejandro Hernández Cordero, Stephen Williams
+
 1.2.2 (2025-04-26)
 ------------------
 * * Added dependencies in required CMakeLists.txt and package.xml files
