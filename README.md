@@ -1,3 +1,39 @@
+## fuse (rolling) - 1.3.0-1
+
+The packages in the `fuse` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --rosdistro rolling --track rolling --edit-track fuse` on `Mon, 28 Jul 2025 01:20:00 -0000`
+
+These packages were released:
+- `fuse`
+- `fuse_constraints`
+- `fuse_core`
+- `fuse_doc`
+- `fuse_graphs`
+- `fuse_loss`
+- `fuse_models`
+- `fuse_msgs`
+- `fuse_optimizers`
+- `fuse_publishers`
+- `fuse_tutorials`
+- `fuse_variables`
+- `fuse_viz`
+
+Version of package(s) in repository `fuse`:
+
+- upstream repository: https://github.com/locusrobotics/fuse.git
+- release repository: https://github.com/ros2-gbp/fuse-release.git
+- rosdistro version: `1.2.3-1`
+- old version: `1.2.3-1`
+- new version: `1.3.0-1`
+
+Versions of tools used:
+
+- bloom version: `0.13.0`
+- catkin_pkg version: `1.0.0`
+- rosdep version: `0.26.0`
+- rosdistro version: `1.0.1`
+- vcstools version: `0.1.42`
+
+
 ## fuse (kilted) - 1.2.4-1
 
 The packages in the `fuse` repository were released into the `kilted` distro by running `/usr/bin/bloom-release --rosdistro kilted --track kilted --edit-track fuse` on `Mon, 28 Jul 2025 01:14:10 -0000`
