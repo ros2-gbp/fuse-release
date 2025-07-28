@@ -1,0 +1,12 @@
+Source: ros-jazzy-fuse
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-jazzy-ament-cmake, ros-jazzy-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-fuse
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-jazzy-fuse-constraints, ros-jazzy-fuse-core, ros-jazzy-fuse-doc, ros-jazzy-fuse-graphs, ros-jazzy-fuse-models, ros-jazzy-fuse-msgs, ros-jazzy-fuse-optimizers, ros-jazzy-fuse-publishers, ros-jazzy-fuse-variables, ros-jazzy-fuse-viz, ros-jazzy-ros-workspace
+Description: The fuse metapackage.
