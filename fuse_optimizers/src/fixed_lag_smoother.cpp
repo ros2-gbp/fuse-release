@@ -213,13 +213,6 @@ void FixedLagSmoother::optimizationLoop()
     // Optimize
     {
       std::lock_guard<std::mutex> lock(optimization_mutex_);
-      // Make sure stop was not called while we were trying to acquire optimization mutex
-      if (!started_) {
-        RCLCPP_DEBUG_STREAM(
-          logger_,
-          "Optimizer stopped while trying to acquire optimization_mutex_. Skipping optimization.");
-        continue;
-      }
       // Apply motion models
       auto new_transaction = fuse_core::Transaction::make_shared();
       // DANGER: processQueue obtains a lock from the pending_transactions_mutex_
@@ -259,27 +252,22 @@ void FixedLagSmoother::optimizationLoop()
       // Optimize the entire graph
       summary_ = graph_->optimize(params_.solver_options);
 
+      // Optimization is complete. Notify all the things about the graph changes.
+      const auto new_transaction_stamp = new_transaction->stamp();
+      notify(std::move(new_transaction), graph_->clone());
+
       // Abort if optimization failed. Not converging is not a failure because the solution found is
       // usable.
       if (!summary_.IsSolutionUsable()) {
-        std::ostringstream oss;
-        oss << "Graph:\n";
-        graph_->print(oss);
-        oss << "\nTransaction:\n";
-        new_transaction->print(oss);
-
         RCLCPP_FATAL_STREAM(
           logger_,
           "Optimization failed after updating the graph with the transaction with timestamp "
-            << new_transaction->stamp().nanoseconds() <<
-            ". Leaving optimization loop and requesting node shutdown...\n" << oss.str());
+            << new_transaction_stamp.nanoseconds() <<
+            ". Leaving optimization loop and requesting node shutdown...");
         RCLCPP_INFO(logger_, summary_.FullReport().c_str());
         rclcpp::shutdown();
         break;
       }
-
-      // Optimization is complete. Notify all the things about the graph changes.
-      notify(std::move(new_transaction), graph_->clone());
 
       // Compute a transaction that marginalizes out those variables.
       lag_expiration_ = computeLagExpirationTime();
@@ -428,7 +416,7 @@ void FixedLagSmoother::processQueue(
           << lag_expiration.nanoseconds() << ". The queued transaction with timestamp "
           << element.stamp().nanoseconds() << " from sensor " << element.sensor_name
           << " has a minimum involved timestamp of " << min_stamp.nanoseconds() << ", which is "
-          << (lag_expiration - min_stamp).seconds()
+          << (lag_expiration - min_stamp).nanoseconds()
           << " seconds too old. Ignoring this transaction.");
       transaction_riter = erase(pending_transactions_, transaction_riter);
     } else if (  // NOLINT
@@ -454,7 +442,7 @@ void FixedLagSmoother::processQueue(
           "The queued transaction with timestamp "
             << element.stamp().nanoseconds() << " and maximum involved stamp of "
             << max_stamp.nanoseconds() << " from sensor " << element.sensor_name
-            << " could not be processed after " << (current_time - max_stamp).seconds()
+            << " could not be processed after " << (current_time - max_stamp).nanoseconds()
             << " seconds, which is greater than the 'transaction_timeout' value of "
             << params_.transaction_timeout.nanoseconds() << ". Ignoring this transaction.");
         transaction_riter = erase(pending_transactions_, transaction_riter);
@@ -472,21 +460,21 @@ bool FixedLagSmoother::resetServiceCallback(
   std::shared_ptr<std_srvs::srv::Empty::Response>
 )
 {
-  started_ = false;
-  ignited_ = false;
+  // Tell all the plugins to stop
+  stopPlugins();
   // Reset the optimizer state
   {
     std::lock_guard<std::mutex> lock(optimization_requested_mutex_);
     optimization_request_ = false;
   }
+  started_ = false;
+  ignited_ = false;
   setStartTime(rclcpp::Time(0, 1, RCL_ROS_TIME));  // NOTE(CH3): INITIALIZED!
   // DANGER: The optimizationLoop() function obtains the lock optimization_mutex_ lock and the
   //         pending_transactions_mutex_ lock at the same time. We perform a parallel locking scheme
   //         here to prevent the possibility of deadlocks.
   {
     std::lock_guard<std::mutex> lock(optimization_mutex_);
-    // Tell all the plugins to stop
-    stopPlugins();
     // Clear all pending transactions
     {
       std::lock_guard<std::mutex> lock(pending_transactions_mutex_);
