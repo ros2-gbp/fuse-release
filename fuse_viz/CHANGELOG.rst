@@ -2,6 +2,12 @@
 Changelog for package fuse_viz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.3.0 (2025-07-28)
+------------------
+
+1.2.4 (2025-07-28)
+------------------
+
 1.2.3 (2025-05-24)
 ------------------
 * Fix linter errors related to header ordering (`#407 <https://github.com/locusrobotics/fuse/issues/407>`_)
