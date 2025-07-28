@@ -2,6 +2,12 @@
 Changelog for package fuse_constraints
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.2.4 (2025-07-28)
+------------------
+
+1.2.3 (2025-05-24)
+------------------
+
 1.2.2 (2025-04-26)
 ------------------
 * * Added dependencies in required CMakeLists.txt and package.xml files
