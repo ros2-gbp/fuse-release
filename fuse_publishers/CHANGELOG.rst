@@ -2,6 +2,21 @@
 Changelog for package fuse_publishers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+1.2.4 (2025-07-28)
+------------------
+* Update headers for tf2_ros (`#417 <https://github.com/locusrobotics/fuse/issues/417>`_)
+* Porting StampedVariableSynchronizer changes to ROS 2 (`#414 <https://github.com/locusrobotics/fuse/issues/414>`_)
+  * Porting effort to ROS 2
+  * Porting this functionality to ROS 2
+  * Responding to comments
+* Contributors: David Murdoch, Gary Servin
+
+1.2.3 (2025-05-24)
+------------------
+* Fix linter errors related to header ordering (`#407 <https://github.com/locusrobotics/fuse/issues/407>`_)
+* Removed deprecations warnings (`#406 <https://github.com/locusrobotics/fuse/issues/406>`_)
+* Contributors: Alejandro Hernández Cordero, Stephen Williams
+
 1.2.2 (2025-04-26)
 ------------------
 * * Added dependencies in required CMakeLists.txt and package.xml files
