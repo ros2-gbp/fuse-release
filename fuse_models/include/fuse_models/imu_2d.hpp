@@ -34,18 +34,19 @@
 #ifndef FUSE_MODELS__IMU_2D_HPP_
 #define FUSE_MODELS__IMU_2D_HPP_
 
-#include <tf2_ros/buffer.hpp>
-#include <tf2_ros/transform_listener.hpp>
+#include <tf2_ros/buffer.h>
+#include <tf2_ros/transform_listener.h>
 
 #include <memory>
 #include <string>
 
-#include <fuse_core/async_sensor_model.hpp>
-#include <fuse_core/throttled_callback.hpp>
-#include <fuse_core/uuid.hpp>
 #include <fuse_models/parameters/imu_2d_params.hpp>
+#include <fuse_core/throttled_callback.hpp>
+
+#include <fuse_core/async_sensor_model.hpp>
+#include <fuse_core/uuid.hpp>
+
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
-#include <geometry_msgs/msg/twist_with_covariance_stamped.hpp>
 #include <rclcpp/rclcpp.hpp>
 #include <sensor_msgs/msg/imu.hpp>
 

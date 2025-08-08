@@ -31,6 +31,8 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
+#include <tf2/utils.h>
+
 #include <chrono>
 #include <exception>
 #include <utility>
@@ -50,7 +52,6 @@
 #include <geometry_msgs/msg/transform_stamped.hpp>
 #include <pluginlib/class_list_macros.hpp>
 #include <rclcpp/rclcpp.hpp>
-#include <tf2/utils.hpp>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
 // Register this publisher with ROS as a plugin.
@@ -82,7 +83,7 @@ bool findPose(
     pose.position.y = position_variable.y();
     pose.position.z = 0.0;
     pose.orientation =
-      tf2::toMsg(tf2::Quaternion(tf2::Vector3(0, 0, 1), orientation_variable.getYaw()));
+      tf2::toMsg(tf2::Quaternion(tf2::Vector3(0, 0, 1), orientation_variable.yaw()));
   } catch (const std::exception & e) {
     RCLCPP_WARN_STREAM_THROTTLE(
       logger, clock, 10.0 * 1000,

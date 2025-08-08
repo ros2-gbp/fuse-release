@@ -2,28 +2,10 @@
 Changelog for package fuse_msgs
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.3.0 (2025-07-28)
+1.1.3 (2025-08-08)
 ------------------
 
-1.2.4 (2025-07-28)
-------------------
-
-1.2.3 (2025-05-24)
-------------------
-
-1.2.2 (2025-04-26)
-------------------
-* * Added dependencies in required CMakeLists.txt and package.xml files
-  * Added ament_cmake_ros and gtest_vendor dependencies
-  * Removed duplicate package depends, alphabetized lists
-  See https://www.linkedin.com/posts/open-source-robotics-foundation_were-looking-for-half-a-dozen-new-open-activity-7317690134764605440-jm3h/
-  Author: KB1110 <kartikbakshi10@gmail.com>
-* Contributors: KB1110
-
-1.2.1 (2024-09-21)
-------------------
-
-1.2.0 (2024-05-02)
+1.1.2 (2025-07-28)
 ------------------
 
 1.1.1 (2024-05-02)

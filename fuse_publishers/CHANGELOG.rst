@@ -2,41 +2,23 @@
 Changelog for package fuse_publishers
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.3.0 (2025-07-28)
+1.1.3 (2025-08-08)
 ------------------
+* Revert "Remove references to deprecated tf2 and tf2_ros headers (`#416 <https://github.com/locusrobotics/fuse/issues/416>`_)"
+  An updated tf2_ros package is not available yet, resulting in build failures with this commit.
+  This reverts commit 9fcd6ca1a259cc1781326942c8007e19b25b4694.
+* Contributors: Stephen Williams
 
-1.2.4 (2025-07-28)
+1.1.2 (2025-07-28)
 ------------------
-* Update headers for tf2_ros (`#417 <https://github.com/locusrobotics/fuse/issues/417>`_)
-* Porting StampedVariableSynchronizer changes to ROS 2 (`#414 <https://github.com/locusrobotics/fuse/issues/414>`_)
-  * Porting effort to ROS 2
-  * Porting this functionality to ROS 2
-  * Responding to comments
-* Contributors: David Murdoch, Gary Servin
-
-1.2.3 (2025-05-24)
-------------------
-* Fix linter errors related to header ordering (`#407 <https://github.com/locusrobotics/fuse/issues/407>`_)
-* Removed deprecations warnings (`#406 <https://github.com/locusrobotics/fuse/issues/406>`_)
-* Contributors: Alejandro Hernández Cordero, Stephen Williams
-
-1.2.2 (2025-04-26)
-------------------
-* * Added dependencies in required CMakeLists.txt and package.xml files
-  * Added ament_cmake_ros and gtest_vendor dependencies
-  * Removed duplicate package depends, alphabetized lists
-  See https://www.linkedin.com/posts/open-source-robotics-foundation_were-looking-for-half-a-dozen-new-open-activity-7317690134764605440-jm3h/
-  Author: KB1110 <kartikbakshi10@gmail.com>
-* [RST-7809] Port fix for negative pi initial conditions from ROS1 to ROS2 (`#335 <https://github.com/locusrobotics/fuse/issues/335>`_)
-  * Add some unit tests for the 2D orientation constraints; Create getters/setters for the 2D orientation variable is preparation for a fix.
-  * Force the 2D orientation value to be is minimum phase
-* Contributors: KB1110, Stephen Williams
-
-1.2.1 (2024-09-21)
-------------------
-
-1.2.0 (2024-05-02)
-------------------
+* Remove references to deprecated tf2 and tf2_ros headers (`#416 <https://github.com/locusrobotics/fuse/issues/416>`_)
+  * Removed deprecations warnings (`#406 <https://github.com/locusrobotics/fuse/issues/406>`_)
+  * Fix linter errors related to header ordering (`#407 <https://github.com/locusrobotics/fuse/issues/407>`_)
+  * Update headers for tf2_ros (`#417 <https://github.com/locusrobotics/fuse/issues/417>`_)
+  ---------
+  Co-authored-by: Alejandro Hernández Cordero <ahcorde@gmail.com>
+  Co-authored-by: Gary Servin <gservin@locusrobotics.com>
+* Contributors: Stephen Williams
 
 1.1.1 (2024-05-02)
 ------------------

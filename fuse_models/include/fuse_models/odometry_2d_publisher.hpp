@@ -34,9 +34,9 @@
 #ifndef FUSE_MODELS__ODOMETRY_2D_PUBLISHER_HPP_
 #define FUSE_MODELS__ODOMETRY_2D_PUBLISHER_HPP_
 
-#include <tf2_ros/buffer.hpp>
-#include <tf2_ros/transform_broadcaster.hpp>
-#include <tf2_ros/transform_listener.hpp>
+#include <tf2_ros/buffer.h>
+#include <tf2_ros/transform_broadcaster.h>
+#include <tf2_ros/transform_listener.h>
 
 #include <memory>
 #include <mutex>
@@ -50,7 +50,7 @@
 #include <fuse_core/transaction.hpp>
 #include <fuse_core/uuid.hpp>
 #include <fuse_core/variable.hpp>
-#include <fuse_variables/stamped_variable_synchronizer.hpp>
+#include <fuse_publishers/stamped_variable_synchronizer.hpp>
 
 #include <geometry_msgs/msg/accel_with_covariance_stamped.hpp>
 #include <nav_msgs/msg/odometry.hpp>
@@ -197,7 +197,7 @@ protected:
   /**
    * @brief Object that searches for the most recent common timestamp for a set of variables
    */
-  using Synchronizer = fuse_variables::StampedVariableSynchronizer<
+  using Synchronizer = fuse_publishers::StampedVariableSynchronizer<
     fuse_variables::Orientation2DStamped,
     fuse_variables::Position2DStamped,
     fuse_variables::VelocityLinear2DStamped,

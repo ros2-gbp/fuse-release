@@ -34,8 +34,10 @@
 #ifndef FUSE_MODELS__COMMON__SENSOR_PROC_HPP_
 #define FUSE_MODELS__COMMON__SENSOR_PROC_HPP_
 
-#include <tf2_ros/buffer.hpp>
-#include <tf2_ros/transform_listener.hpp>
+#include <tf2/LinearMath/Transform.h>
+#include <tf2/LinearMath/Vector3.h>
+#include <tf2_ros/buffer.h>
+#include <tf2_ros/transform_listener.h>
 
 #include <algorithm>
 #include <functional>
@@ -63,8 +65,6 @@
 #include <geometry_msgs/msg/twist_with_covariance_stamped.hpp>
 #include <rclcpp/clock.hpp>
 #include <rclcpp/rclcpp.hpp>
-#include <tf2/LinearMath/Transform.hpp>
-#include <tf2/LinearMath/Vector3.hpp>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 #include <tf2_2d/tf2_2d.hpp>
 #include <tf2_2d/transform.hpp>
@@ -326,10 +326,10 @@ inline bool processAbsolutePoseWithCovariance(
     fuse_variables::Orientation2DStamped::make_shared(pose.header.stamp, device_id);
   position->x() = absolute_pose_2d.x();
   position->y() = absolute_pose_2d.y();
-  orientation->setYaw(absolute_pose_2d.yaw());
+  orientation->yaw() = absolute_pose_2d.yaw();
 
   // Create the pose for the constraint
-  fuse_core::VectorXd pose_mean(3);
+  fuse_core::Vector3d pose_mean;
   pose_mean << absolute_pose_2d.x(), absolute_pose_2d.y(), absolute_pose_2d.yaw();
 
   // Create the covariance for the constraint
@@ -448,7 +448,7 @@ inline bool processDifferentialPoseWithCovariance(
     fuse_variables::Orientation2DStamped::make_shared(pose1.header.stamp, device_id);
   position1->x() = pose1_2d.x();
   position1->y() = pose1_2d.y();
-  orientation1->setYaw(pose1_2d.yaw());
+  orientation1->yaw() = pose1_2d.yaw();
 
   auto position2 = fuse_variables::Position2DStamped::make_shared(pose2.header.stamp, device_id);
   auto orientation2 = fuse_variables::Orientation2DStamped::make_shared(
@@ -456,14 +456,14 @@ inline bool processDifferentialPoseWithCovariance(
     device_id);
   position2->x() = pose2_2d.x();
   position2->y() = pose2_2d.y();
-  orientation2->setYaw(pose2_2d.yaw());
+  orientation2->yaw() = pose2_2d.yaw();
 
   // Create the delta for the constraint
   const double sy = ::sin(-pose1_2d.yaw());
   const double cy = ::cos(-pose1_2d.yaw());
   double x_diff = pose2_2d.x() - pose1_2d.x();
   double y_diff = pose2_2d.y() - pose1_2d.y();
-  fuse_core::VectorXd pose_relative_mean(3);
+  fuse_core::Vector3d pose_relative_mean;
   pose_relative_mean <<
     cy * x_diff - sy * y_diff,
     sy * x_diff + cy * y_diff,
@@ -813,7 +813,7 @@ inline bool processDifferentialPoseWithTwistCovariance(
     fuse_variables::Orientation2DStamped::make_shared(pose1.header.stamp, device_id);
   position1->x() = pose1_2d.x();
   position1->y() = pose1_2d.y();
-  orientation1->setYaw(pose1_2d.yaw());
+  orientation1->yaw() = pose1_2d.yaw();
 
   auto position2 = fuse_variables::Position2DStamped::make_shared(pose2.header.stamp, device_id);
   auto orientation2 = fuse_variables::Orientation2DStamped::make_shared(
@@ -821,11 +821,11 @@ inline bool processDifferentialPoseWithTwistCovariance(
     device_id);
   position2->x() = pose2_2d.x();
   position2->y() = pose2_2d.y();
-  orientation2->setYaw(pose2_2d.yaw());
+  orientation2->yaw() = pose2_2d.yaw();
 
   // Create the delta for the constraint
   const auto delta = pose1_2d.inverseTimes(pose2_2d);
-  fuse_core::VectorXd pose_relative_mean(3);
+  fuse_core::Vector3d pose_relative_mean;
   pose_relative_mean << delta.x(), delta.y(), delta.yaw();
 
   // Create the covariance components for the constraint
@@ -1016,12 +1016,12 @@ inline bool processTwistWithCovariance(
     velocity_linear->y() = transformed_message.twist.twist.linear.y;
 
     // Create the mean twist vectors for the constraints
-    fuse_core::VectorXd linear_vel_mean(2);
+    fuse_core::Vector2d linear_vel_mean;
     linear_vel_mean << transformed_message.twist.twist.linear.x,
       transformed_message.twist.twist.linear.y;
 
     // Create the covariances for the constraints
-    fuse_core::MatrixXd linear_vel_covariance(2, 2);
+    fuse_core::Matrix2d linear_vel_covariance;
     linear_vel_covariance <<
       transformed_message.twist.covariance[0],
       transformed_message.twist.covariance[1],
@@ -1074,10 +1074,10 @@ inline bool processTwistWithCovariance(
       fuse_variables::VelocityAngular2DStamped::make_shared(twist.header.stamp, device_id);
     velocity_angular->yaw() = transformed_message.twist.twist.angular.z;
 
-    fuse_core::VectorXd angular_vel_vector(1);
+    fuse_core::Vector1d angular_vel_vector;
     angular_vel_vector << transformed_message.twist.twist.angular.z;
 
-    fuse_core::MatrixXd angular_vel_covariance(1, 1);
+    fuse_core::Matrix1d angular_vel_covariance;
     angular_vel_covariance << transformed_message.twist.covariance[35];
 
     bool add_constraint = true;
@@ -1176,10 +1176,10 @@ inline bool processAccelWithCovariance(
   acceleration_linear->y() = transformed_message.accel.accel.linear.y;
 
   // Create the full mean vector and covariance for the constraint
-  fuse_core::VectorXd accel_mean(2);
+  fuse_core::Vector2d accel_mean;
   accel_mean << transformed_message.accel.accel.linear.x, transformed_message.accel.accel.linear.y;
 
-  fuse_core::MatrixXd accel_covariance(2, 2);
+  fuse_core::Matrix2d accel_covariance;
   accel_covariance <<
     transformed_message.accel.covariance[0],
     transformed_message.accel.covariance[1],

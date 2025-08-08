@@ -12,20 +12,21 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake_ros REQUIRED)
-find_package(diagnostic_updater REQUIRED)
+find_package(rclcpp REQUIRED)
+
 find_package(fuse_constraints REQUIRED)
 find_package(fuse_core REQUIRED)
 find_package(fuse_msgs REQUIRED)
 find_package(fuse_graphs REQUIRED)
 find_package(fuse_variables REQUIRED)
-find_package(pluginlib REQUIRED)
+
 find_package(std_srvs REQUIRED)
-find_package(rclcpp REQUIRED)
+find_package(diagnostic_updater REQUIRED)
+find_package(pluginlib REQUIRED)
 find_package(rclcpp_components REQUIRED)
 
 find_package(Ceres REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(gtest_vendor)
 
 ###########
 ## Build ##
@@ -43,7 +44,6 @@ target_include_directories(${PROJECT_NAME} PUBLIC
   "$<INSTALL_INTERFACE:include/${PROJECT_NAME}>"
 )
 target_link_libraries(${PROJECT_NAME}
-  diagnostic_updater::diagnostic_updater
   fuse_constraints::fuse_constraints
   fuse_core::fuse_core
   fuse_graphs::fuse_graphs
@@ -52,6 +52,7 @@ target_link_libraries(${PROJECT_NAME}
   pluginlib::pluginlib
   ${std_srvs_TARGETS}
 )
+ament_target_dependencies(${PROJECT_NAME} diagnostic_updater)
 
 ## batch_optimizer node
 add_executable(batch_optimizer_node src/batch_optimizer_node.cpp)

@@ -32,6 +32,8 @@
  *  POSSIBILITY OF SUCH DAMAGE.
  */
 #include <Eigen/Dense>
+#include <tf2/convert.h>
+#include <tf2/LinearMath/Quaternion.h>
 
 #include <exception>
 #include <stdexcept>
@@ -55,8 +57,6 @@
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
 #include <pluginlib/class_list_macros.hpp>
 #include <std_srvs/srv/empty.hpp>
-#include <tf2/convert.hpp>
-#include <tf2/LinearMath/Quaternion.hpp>
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
 
 // Register this motion model with ROS as a plugin.
@@ -315,12 +315,11 @@ void Unicycle2DIgnition::sendPrior(const geometry_msgs::msg::PoseWithCovarianceS
   position->x() = pose.pose.pose.position.x;
   position->y() = pose.pose.pose.position.y;
   auto orientation = fuse_variables::Orientation2DStamped::make_shared(stamp, device_id_);
-  orientation->setYaw(
-    fuse_core::getYaw(
-      pose.pose.pose.orientation.w,
-      pose.pose.pose.orientation.x,
-      pose.pose.pose.orientation.y,
-      pose.pose.pose.orientation.z));
+  orientation->yaw() = fuse_core::getYaw(
+    pose.pose.pose.orientation.w,
+    pose.pose.pose.orientation.x,
+    pose.pose.pose.orientation.y,
+    pose.pose.pose.orientation.z);
   auto linear_velocity = fuse_variables::VelocityLinear2DStamped::make_shared(stamp, device_id_);
   linear_velocity->x() = params_.initial_state[3];
   linear_velocity->y() = params_.initial_state[4];
@@ -335,27 +334,17 @@ void Unicycle2DIgnition::sendPrior(const geometry_msgs::msg::PoseWithCovarianceS
   // Create the covariances for each variable
   // The pose covariances are extracted from the provided PoseWithCovarianceStamped message.
   // The remaining covariances are provided as parameters to the parameter server.
-  auto position_mean = fuse_core::VectorXd(2);
-  position_mean << position->x(), position->y();
-  auto position_cov = fuse_core::MatrixXd(2, 2);
+  auto position_cov = fuse_core::Matrix2d();
   position_cov << pose.pose.covariance[0], pose.pose.covariance[1],
     pose.pose.covariance[6], pose.pose.covariance[7];
-  auto orientation_mean = fuse_core::VectorXd(1);
-  orientation_mean << orientation->getYaw();
-  auto orientation_cov = fuse_core::MatrixXd(1, 1);
+  auto orientation_cov = fuse_core::Matrix1d();
   orientation_cov << pose.pose.covariance[35];
-  auto linear_velocity_mean = fuse_core::VectorXd(2);
-  linear_velocity_mean << linear_velocity->x(), linear_velocity->y();
-  auto linear_velocity_cov = fuse_core::MatrixXd(2, 2);
+  auto linear_velocity_cov = fuse_core::Matrix2d();
   linear_velocity_cov << params_.initial_sigma[3] * params_.initial_sigma[3], 0.0,
     0.0, params_.initial_sigma[4] * params_.initial_sigma[4];
-  auto angular_velocity_mean = fuse_core::VectorXd(1);
-  angular_velocity_mean << angular_velocity->yaw();
-  auto angular_velocity_cov = fuse_core::MatrixXd(1, 1);
+  auto angular_velocity_cov = fuse_core::Matrix1d();
   angular_velocity_cov << params_.initial_sigma[5] * params_.initial_sigma[5];
-  auto linear_acceleration_mean = fuse_core::VectorXd(2);
-  linear_acceleration_mean << linear_acceleration->x(), linear_acceleration->y();
-  auto linear_acceleration_cov = fuse_core::MatrixXd(2, 2);
+  auto linear_acceleration_cov = fuse_core::Matrix2d();
   linear_acceleration_cov << params_.initial_sigma[6] * params_.initial_sigma[6], 0.0,
     0.0, params_.initial_sigma[7] * params_.initial_sigma[7];
 
@@ -363,31 +352,31 @@ void Unicycle2DIgnition::sendPrior(const geometry_msgs::msg::PoseWithCovarianceS
   auto position_constraint = fuse_constraints::AbsolutePosition2DStampedConstraint::make_shared(
     name(),
     *position,
-    position_mean,
+    fuse_core::Vector2d(position->x(), position->y()),
     position_cov);
   auto orientation_constraint =
     fuse_constraints::AbsoluteOrientation2DStampedConstraint::make_shared(
     name(),
     *orientation,
-    orientation_mean,
+    fuse_core::Vector1d(orientation->yaw()),
     orientation_cov);
   auto linear_velocity_constraint =
     fuse_constraints::AbsoluteVelocityLinear2DStampedConstraint::make_shared(
     name(),
     *linear_velocity,
-    linear_velocity_mean,
+    fuse_core::Vector2d(linear_velocity->x(), linear_velocity->y()),
     linear_velocity_cov);
   auto angular_velocity_constraint =
     fuse_constraints::AbsoluteVelocityAngular2DStampedConstraint::make_shared(
     name(),
     *angular_velocity,
-    angular_velocity_mean,
+    fuse_core::Vector1d(angular_velocity->yaw()),
     angular_velocity_cov);
   auto linear_acceleration_constraint =
     fuse_constraints::AbsoluteAccelerationLinear2DStampedConstraint::make_shared(
     name(),
     *linear_acceleration,
-    linear_acceleration_mean,
+    fuse_core::Vector2d(linear_acceleration->x(), linear_acceleration->y()),
     linear_acceleration_cov);
 
   // Create the transaction
@@ -412,7 +401,7 @@ void Unicycle2DIgnition::sendPrior(const geometry_msgs::msg::PoseWithCovarianceS
     logger_,
     "Received a set_pose request (stamp: " << rclcpp::Time(stamp).nanoseconds()
                                            << ", x: " << position->x() << ", y: "
-                                           << position->y() << ", yaw: " << orientation->getYaw() <<
+                                           << position->y() << ", yaw: " << orientation->yaw() <<
       ")");
 }
 

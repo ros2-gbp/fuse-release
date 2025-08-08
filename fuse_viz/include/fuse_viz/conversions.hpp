@@ -35,6 +35,10 @@
 #ifndef FUSE_VIZ__CONVERSIONS_HPP_
 #define FUSE_VIZ__CONVERSIONS_HPP_
 
+#include <tf2/LinearMath/Quaternion.h>
+#include <tf2/LinearMath/Transform.h>
+#include <tf2/LinearMath/Vector3.h>
+
 #include <OgreColourValue.h>
 #include <OgreQuaternion.h>
 #include <Ogre.h>
@@ -48,9 +52,6 @@
 #include <fuse_core/uuid.hpp>
 #include <fuse_variables/orientation_2d_stamped.hpp>
 #include <fuse_variables/position_2d_stamped.hpp>
-#include <tf2/LinearMath/Quaternion.hpp>
-#include <tf2/LinearMath/Transform.hpp>
-#include <tf2/LinearMath/Vector3.hpp>
 
 
 namespace tf2
@@ -89,7 +90,7 @@ inline tf2::Vector3 toTF(const fuse_variables::Position2DStamped & position)
 
 inline tf2::Quaternion toTF(const fuse_variables::Orientation2DStamped & orientation)
 {
-  return {tf2::Vector3{0, 0, 1}, orientation.getYaw()};
+  return {tf2::Vector3{0, 0, 1}, orientation.yaw()};
 }
 
 inline tf2::Transform toTF(

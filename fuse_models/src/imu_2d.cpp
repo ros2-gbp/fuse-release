@@ -96,18 +96,13 @@ void Imu2D::onInit()
   }
 
   tf_buffer_ = std::make_unique<tf2_ros::Buffer>(clock_);
-  if (!params_.acceleration_target_frame.empty() ||
-    !params_.twist_target_frame.empty() ||
-    !params_.orientation_target_frame.empty())
-  {
-    tf_listener_ = std::make_unique<tf2_ros::TransformListener>(
-      *tf_buffer_,
-      interfaces_.get_node_base_interface(),
-      interfaces_.get_node_logging_interface(),
-      interfaces_.get_node_parameters_interface(),
-      interfaces_.get_node_topics_interface()
-    );
-  }
+  tf_listener_ = std::make_unique<tf2_ros::TransformListener>(
+    *tf_buffer_,
+    interfaces_.get_node_base_interface(),
+    interfaces_.get_node_logging_interface(),
+    interfaces_.get_node_parameters_interface(),
+    interfaces_.get_node_topics_interface()
+  );
 }
 
 void Imu2D::onStart()
@@ -261,7 +256,7 @@ void Imu2D::processDifferential(
     params_.orientation_target_frame.empty() ? pose.header.frame_id : params_.
     orientation_target_frame;
 
-  if (!common::transformMessage(*tf_buffer_, pose, *transformed_pose, params_.tf_timeout)) {
+  if (!common::transformMessage(*tf_buffer_, pose, *transformed_pose)) {
     RCLCPP_WARN_STREAM_THROTTLE(
       logger_, *clock_, 5.0 * 1000,
       "Cannot transform pose message with stamp " << rclcpp::Time(
@@ -281,7 +276,7 @@ void Imu2D::processDifferential(
     transformed_twist.header.frame_id =
       params_.twist_target_frame.empty() ? twist.header.frame_id : params_.twist_target_frame;
 
-    if (!common::transformMessage(*tf_buffer_, twist, transformed_twist, params_.tf_timeout)) {
+    if (!common::transformMessage(*tf_buffer_, twist, transformed_twist)) {
       RCLCPP_WARN_STREAM_THROTTLE(
         logger_, *clock_, 5.0 * 1000,
         "Cannot transform twist message with stamp " << rclcpp::Time(
@@ -294,7 +289,7 @@ void Imu2D::processDifferential(
         device_id_,
         *previous_pose_,
         *transformed_pose,
-        transformed_twist,
+        twist,
         params_.minimum_pose_relative_covariance,
         params_.twist_covariance_offset,
         params_.pose_loss,
