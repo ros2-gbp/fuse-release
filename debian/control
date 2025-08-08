@@ -1,0 +1,12 @@
+Source: ros-jazzy-fuse-loss
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), libceres-dev, libqwt-qt5-dev <!nocheck>, qtbase5-dev <!nocheck>, ros-jazzy-ament-cmake-gtest <!nocheck>, ros-jazzy-ament-cmake-ros, ros-jazzy-ament-lint-auto <!nocheck>, ros-jazzy-ament-lint-common <!nocheck>, ros-jazzy-fuse-core, ros-jazzy-pluginlib, ros-jazzy-rclcpp, ros-jazzy-ros-workspace
+Homepage: 
+Standards-Version: 3.9.2
+
+Package: ros-jazzy-fuse-loss
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libceres-dev, ros-jazzy-fuse-core, ros-jazzy-pluginlib, ros-jazzy-rclcpp, ros-jazzy-ros-workspace
+Description: The fuse_loss package provides a set of commonly used loss functions, such as the basic ones provided by Ceres.
