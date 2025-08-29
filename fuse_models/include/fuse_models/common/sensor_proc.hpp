@@ -34,11 +34,6 @@
 #ifndef FUSE_MODELS__COMMON__SENSOR_PROC_HPP_
 #define FUSE_MODELS__COMMON__SENSOR_PROC_HPP_
 
-#include <tf2/LinearMath/Transform.h>
-#include <tf2/LinearMath/Vector3.h>
-#include <tf2_ros/buffer.h>
-#include <tf2_ros/transform_listener.h>
-
 #include <algorithm>
 #include <functional>
 #include <stdexcept>
@@ -65,9 +60,13 @@
 #include <geometry_msgs/msg/twist_with_covariance_stamped.hpp>
 #include <rclcpp/clock.hpp>
 #include <rclcpp/rclcpp.hpp>
-#include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#include <tf2/LinearMath/Transform.hpp>
+#include <tf2/LinearMath/Vector3.hpp>
 #include <tf2_2d/tf2_2d.hpp>
 #include <tf2_2d/transform.hpp>
+#include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
+#include <tf2_ros/buffer.hpp>
+#include <tf2_ros/transform_listener.hpp>
 
 #include <boost/range/join.hpp>
 
