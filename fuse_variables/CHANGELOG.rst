@@ -2,13 +2,48 @@
 Changelog for package fuse_variables
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.1.4 (2025-08-29)
+1.3.1 (2025-08-29)
 ------------------
 
-1.1.3 (2025-08-08)
+1.3.0 (2025-07-28)
 ------------------
 
-1.1.2 (2025-07-28)
+1.2.4 (2025-07-28)
+------------------
+* Porting StampedVariableSynchronizer changes to ROS 2 (`#414 <https://github.com/locusrobotics/fuse/issues/414>`_)
+  * Porting effort to ROS 2
+  * Porting this functionality to ROS 2
+  * Responding to comments
+* [RST-12952] Modified the loadDeviceId() function to accept optional parameters (`#409 <https://github.com/locusrobotics/fuse/issues/409>`_)
+  * Modified the loadDeviceId() function to accept optional parameter names for the device UUID and device name
+  * Use the logging interface from the node
+* Contributors: David Murdoch, Stephen Williams
+
+1.2.3 (2025-05-24)
+------------------
+
+1.2.2 (2025-04-26)
+------------------
+* * Added dependencies in required CMakeLists.txt and package.xml files
+  * Added ament_cmake_ros and gtest_vendor dependencies
+  * Removed duplicate package depends, alphabetized lists
+  See https://www.linkedin.com/posts/open-source-robotics-foundation_were-looking-for-half-a-dozen-new-open-activity-7317690134764605440-jm3h/
+  Author: KB1110 <kartikbakshi10@gmail.com>
+* Port landmark cleanup from ROS1 to ROS2 (`#330 <https://github.com/locusrobotics/fuse/issues/330>`_)
+  Port landmark cleanup from ROS1 to ROS2 (`#259 <https://github.com/locusrobotics/fuse/issues/259>`_)
+* [RST-7809] Port fix for negative pi initial conditions from ROS1 to ROS2 (`#335 <https://github.com/locusrobotics/fuse/issues/335>`_)
+  * Add some unit tests for the 2D orientation constraints; Create getters/setters for the 2D orientation variable is preparation for a fix.
+  * Force the 2D orientation value to be is minimum phase
+* Port patch `#385 <https://github.com/locusrobotics/fuse/issues/385>`_ to ROS 2 Rolling (`#403 <https://github.com/locusrobotics/fuse/issues/403>`_)
+  Update orientation_3d_stamped.h (`#385 <https://github.com/locusrobotics/fuse/issues/385>`_)
+  * Update orientation_3d_stamped.h description of Orientation3DManifold
+  authored-by: Jake McLaughlin <jmclaughlin@ottomotors.com>
+* Contributors: KB1110, Stephen Williams
+
+1.2.1 (2024-09-21)
+------------------
+
+1.2.0 (2024-05-02)
 ------------------
 
 1.1.1 (2024-05-02)

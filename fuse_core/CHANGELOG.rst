@@ -2,13 +2,45 @@
 Changelog for package fuse_core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.1.4 (2025-08-29)
+1.3.1 (2025-08-29)
 ------------------
 
-1.1.3 (2025-08-08)
+1.3.0 (2025-07-28)
 ------------------
 
-1.1.2 (2025-07-28)
+1.2.4 (2025-07-28)
+------------------
+
+1.2.3 (2025-05-24)
+------------------
+
+1.2.2 (2025-04-26)
+------------------
+* * Added dependencies in required CMakeLists.txt and package.xml files
+  * Added ament_cmake_ros and gtest_vendor dependencies
+  * Removed duplicate package depends, alphabetized lists
+  See https://www.linkedin.com/posts/open-source-robotics-foundation_were-looking-for-half-a-dozen-new-open-activity-7317690134764605440-jm3h/
+  Author: KB1110 <kartikbakshi10@gmail.com>
+* Fix build and linter warnings (`#405 <https://github.com/locusrobotics/fuse/issues/405>`_)
+* Update callback_wrapper.hpp (`#397 <https://github.com/locusrobotics/fuse/issues/397>`_)
+  Fix build failure on ROS 2 Rolling by adding a required override for get_timers() in CallbackAdapter.
+  In ROS 2 Rolling, rclcpp::Waitable introduced a new pure virtual method get_timers() const. Since CallbackAdapter inherits from Waitable and did not implement this method, it remained abstract and could not be instantiated, causing the build to fail.
+  This adds a simple override that returns an empty vector, as CallbackAdapter does not use timers. This resolves the abstract class instantiation error.
+* Port fix for Issue 300 from ROS 1 into ROS 2 (`#404 <https://github.com/locusrobotics/fuse/issues/404>`_)
+  Handle prior on last stamp (`#323 <https://github.com/locusrobotics/fuse/issues/323>`_)
+  * Added unit test to illustrate the bug from Issue 300
+  * Move where the input variables are updated to the motion model values to ensure that transactions that involve only a single timestamp are correctly handled
+* Contributors: KB1110, Stephen Williams, Surabhi Gade
+
+1.2.1 (2024-09-21)
+------------------
+* Fix CallbackWrapper class for the Rolling release
+  * Update for changes to the ROS2 Waitable base class
+  * implement pure virtual waitable functions as in https://github.com/ros2/system_tests/pull/548
+  Author: Henry Moore <henry.moore@picknik.ai>
+* Contributors: Stephen Williams
+
+1.2.0 (2024-05-02)
 ------------------
 
 1.1.1 (2024-05-02)
