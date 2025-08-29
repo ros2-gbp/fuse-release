@@ -33,13 +33,12 @@
  */
 
 #include <gtest/gtest.h>
-#include <tf2_ros/static_transform_broadcaster.h>
 
 #include <vector>
 
 // Workaround ros2/geometry2#242
 #include <tf2_geometry_msgs/tf2_geometry_msgs.hpp>
-#include <tf2/utils.h>  // NOLINT(build/include_order)
+#include <tf2/utils.hpp>  // NOLINT(build/include_order)
 
 #include <fuse_constraints/absolute_pose_2d_stamped_constraint.hpp>
 #include <fuse_core/eigen.hpp>
@@ -52,8 +51,8 @@
 #include <geometry_msgs/msg/pose_stamped.hpp>
 #include <geometry_msgs/msg/pose_with_covariance_stamped.hpp>
 #include <rclcpp/rclcpp.hpp>
-
 #include <tf2_msgs/msg/tf_message.hpp>
+#include <tf2_ros/static_transform_broadcaster.hpp>
 
 
 /**
