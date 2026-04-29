@@ -1,1 +1,1 @@
-{"base": "0060a603c785", "parent": "debian/rolling/fuse", "previous": "d10b604dbc99", "trim": "", "trimbase": ""}
+{"base": "0a61cde6", "parent": "debian/lyrical/fuse", "previous": "e4322d97", "trim": "", "trimbase": ""}
