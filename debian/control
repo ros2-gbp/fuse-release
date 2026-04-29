@@ -1,0 +1,12 @@
+Source: ros-lyrical-fuse
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-ros, ros-lyrical-gtest-vendor, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/fuse/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-fuse
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lyrical-ament-cmake-ros, ros-lyrical-fuse-constraints, ros-lyrical-fuse-core, ros-lyrical-fuse-doc, ros-lyrical-fuse-graphs, ros-lyrical-fuse-models, ros-lyrical-fuse-msgs, ros-lyrical-fuse-optimizers, ros-lyrical-fuse-publishers, ros-lyrical-fuse-variables, ros-lyrical-fuse-viz, ros-lyrical-gtest-vendor, ros-lyrical-ros-workspace
+Description: The fuse metapackage.
