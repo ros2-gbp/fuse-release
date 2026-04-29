@@ -1,0 +1,12 @@
+Source: ros-lyrical-fuse-doc
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-ros, ros-lyrical-gtest-vendor, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/fuse_doc/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-fuse-doc
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lyrical-ament-cmake-ros, ros-lyrical-gtest-vendor, ros-lyrical-ros-workspace
+Description: The fuse_doc package provides documentation and examples for the fuse package.
