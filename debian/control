@@ -1,0 +1,12 @@
+Source: ros-lyrical-fuse-msgs
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-ros, ros-lyrical-ament-lint-auto <!nocheck>, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-geometry-msgs, ros-lyrical-gtest-vendor, ros-lyrical-rosidl-default-generators, ros-lyrical-std-msgs, ros-lyrical-ros-workspace, ros-lyrical-rosidl-typesupport-fastrtps-c, ros-lyrical-rosidl-typesupport-fastrtps-cpp
+Homepage: https://index.ros.org/p/fuse_msgs/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-fuse-msgs
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lyrical-ament-cmake-ros, ros-lyrical-geometry-msgs, ros-lyrical-gtest-vendor, ros-lyrical-rosidl-default-runtime, ros-lyrical-std-msgs, ros-lyrical-ros-workspace
+Description: The fuse_msgs package contains messages capable of holding serialized fuse objects.
