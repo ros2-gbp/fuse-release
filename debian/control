@@ -1,0 +1,12 @@
+Source: ros-lyrical-fuse-loss
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), libceres-dev, libqwt-qt5-dev <!nocheck>, qtbase5-dev <!nocheck>, ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-gtest <!nocheck>, ros-lyrical-ament-cmake-ros, ros-lyrical-ament-lint-auto <!nocheck>, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-fuse-core, ros-lyrical-gtest-vendor, ros-lyrical-pluginlib, ros-lyrical-rclcpp, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/fuse_loss/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-fuse-loss
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libceres-dev, ros-lyrical-ament-cmake-ros, ros-lyrical-fuse-core, ros-lyrical-gtest-vendor, ros-lyrical-pluginlib, ros-lyrical-rclcpp, ros-lyrical-ros-workspace
+Description: The fuse_loss package provides a set of commonly used loss functions, such as the basic ones provided by Ceres.
