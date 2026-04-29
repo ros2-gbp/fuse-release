@@ -1,1 +1,1 @@
-{"base": "5c59a598c36a", "parent": "debian/rolling/fuse_graphs", "previous": "963a59e09457", "trim": "", "trimbase": ""}
+{"base": "fcc7c690", "parent": "debian/lyrical/fuse_graphs", "previous": "4ce9e903", "trim": "", "trimbase": ""}
