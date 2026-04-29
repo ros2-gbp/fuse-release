@@ -1,0 +1,12 @@
+Source: ros-lyrical-fuse-publishers
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-gtest <!nocheck>, ros-lyrical-ament-cmake-ros, ros-lyrical-ament-lint-auto <!nocheck>, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-fuse-constraints <!nocheck>, ros-lyrical-fuse-core, ros-lyrical-fuse-graphs <!nocheck>, ros-lyrical-fuse-msgs, ros-lyrical-fuse-variables, ros-lyrical-geometry-msgs, ros-lyrical-gtest-vendor, ros-lyrical-nav-msgs, ros-lyrical-pluginlib, ros-lyrical-rclcpp, ros-lyrical-rclcpp <!nocheck>, ros-lyrical-tf2, ros-lyrical-tf2-geometry-msgs, ros-lyrical-tf2-ros, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/fuse_publishers/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-fuse-publishers
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lyrical-ament-cmake-ros, ros-lyrical-fuse-core, ros-lyrical-fuse-msgs, ros-lyrical-fuse-variables, ros-lyrical-geometry-msgs, ros-lyrical-gtest-vendor, ros-lyrical-nav-msgs, ros-lyrical-pluginlib, ros-lyrical-rclcpp, ros-lyrical-tf2, ros-lyrical-tf2-geometry-msgs, ros-lyrical-tf2-ros, ros-lyrical-ros-workspace
+Description: The fuse_publishers package provides a set of common publisher plugins.
