@@ -1,0 +1,12 @@
+Source: ros-lyrical-fuse-tutorials
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-ros, ros-lyrical-ament-lint-auto <!nocheck>, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-fuse-constraints, ros-lyrical-fuse-core, ros-lyrical-fuse-models, ros-lyrical-fuse-variables, ros-lyrical-gtest-vendor, ros-lyrical-nav-msgs, ros-lyrical-rclcpp, ros-lyrical-sensor-msgs, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/fuse_tutorials/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-fuse-tutorials
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-lyrical-ament-cmake-ros, ros-lyrical-fuse-constraints, ros-lyrical-fuse-core, ros-lyrical-fuse-models, ros-lyrical-fuse-optimizers, ros-lyrical-fuse-publishers, ros-lyrical-fuse-variables, ros-lyrical-gtest-vendor, ros-lyrical-nav-msgs, ros-lyrical-rclcpp, ros-lyrical-rviz2, ros-lyrical-sensor-msgs, ros-lyrical-ros-workspace
+Description: Package containing source code for the fuse tutorials.
