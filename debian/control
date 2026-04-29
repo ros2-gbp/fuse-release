@@ -1,0 +1,13 @@
+Source: ros-lyrical-fuse-core
+Section: misc
+Priority: optional
+Maintainer: Stephen Williams <swilliams@locusrobotics.com>
+Build-Depends: debhelper (>= 9.0.0), libboost-all-dev, libceres-dev, libeigen3-dev, libgoogle-glog-dev, ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-gtest <!nocheck>, ros-lyrical-ament-cmake-pytest <!nocheck>, ros-lyrical-ament-cmake-ros, ros-lyrical-ament-lint-auto <!nocheck>, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-fuse-msgs, ros-lyrical-geometry-msgs <!nocheck>, ros-lyrical-gtest-vendor, ros-lyrical-launch <!nocheck>, ros-lyrical-launch-pytest <!nocheck>, ros-lyrical-pluginlib, ros-lyrical-rcl-interfaces, ros-lyrical-rclcpp, ros-lyrical-rclcpp <!nocheck>, ros-lyrical-rclcpp-components, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/fuse_core/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-fuse-core
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libboost-all-dev, libceres-dev, libeigen3-dev, libgoogle-glog-dev, ros-lyrical-ament-cmake-ros, ros-lyrical-fuse-msgs, ros-lyrical-gtest-vendor, ros-lyrical-pluginlib, ros-lyrical-rcl-interfaces, ros-lyrical-rclcpp, ros-lyrical-rclcpp-components, ros-lyrical-ros-workspace
+Description: The fuse_core package provides the base class interfaces for the various fuse components.
+ Concrete implementations of these interfaces are provided in other packages.
