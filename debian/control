@@ -1,0 +1,12 @@
+Source: ros-lyrical-fuse-viz
+Section: misc
+Priority: optional
+Maintainer: Enrique Fernandez <efernandez@clearpath.ai>
+Build-Depends: debhelper (>= 9.0.0), libeigen3-dev, qtbase5-dev, ros-lyrical-ament-cmake, ros-lyrical-ament-cmake-ros, ros-lyrical-ament-lint-auto <!nocheck>, ros-lyrical-ament-lint-common <!nocheck>, ros-lyrical-fuse-constraints, ros-lyrical-fuse-core, ros-lyrical-fuse-msgs, ros-lyrical-fuse-variables, ros-lyrical-geometry-msgs, ros-lyrical-gtest-vendor, ros-lyrical-rviz-common, ros-lyrical-rviz-rendering, ros-lyrical-tf2-geometry-msgs, ros-lyrical-ros-workspace
+Homepage: https://index.ros.org/p/fuse_viz/#lyrical
+Standards-Version: 3.9.2
+
+Package: ros-lyrical-fuse-viz
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, libeigen3-dev, ros-lyrical-ament-cmake-ros, ros-lyrical-fuse-constraints, ros-lyrical-fuse-core, ros-lyrical-fuse-msgs, ros-lyrical-fuse-variables, ros-lyrical-geometry-msgs, ros-lyrical-gtest-vendor, ros-lyrical-rviz-common, ros-lyrical-rviz-rendering, ros-lyrical-tf2-geometry-msgs, ros-lyrical-ros-workspace
+Description: The fuse_viz package provides visualization tools for fuse.
