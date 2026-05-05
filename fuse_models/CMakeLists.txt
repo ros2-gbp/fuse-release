@@ -12,6 +12,7 @@ if(CMAKE_COMPILER_IS_GNUCXX OR CMAKE_CXX_COMPILER_ID MATCHES "Clang")
 endif()
 
 find_package(ament_cmake_ros REQUIRED)
+
 find_package(fuse_constraints REQUIRED)
 find_package(fuse_core REQUIRED)
 find_package(fuse_graphs REQUIRED)
@@ -32,7 +33,6 @@ find_package(tf2_ros REQUIRED)
 
 find_package(Ceres REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(gtest_vendor)
 
 ###########
 ## Build ##
