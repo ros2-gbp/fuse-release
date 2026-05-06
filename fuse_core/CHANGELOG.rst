@@ -2,14 +2,25 @@
 Changelog for package fuse_core
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-1.2.6 (2026-05-06)
+1.3.3 (2026-05-06)
 ------------------
 * fuse_core: Don't fail with boost >= 1.86 (`#423 <https://github.com/locusrobotics/fuse/issues/423>`_)
   Boost >= 1.86 provides std::hash<boost::uuids::uuid> itself; guard against redefinition since fuse_core::UUID is an alias for boost::uuids::uuid.
   See https://www.boost.org/doc/libs/latest/libs/uuid/doc/html/uuid.html#changes_changes_in_boost_1_86_0_major_update
-* Contributors: Michal Sojka
+* Fix edge condition on Boost fix versions. (`#425 <https://github.com/locusrobotics/fuse/issues/425>`_)
+  Boost Version 1.90 is affected by the any_range bug. Make sure that version is included in the fix.
+* Contributors: Michal Sojka, Stephen Williams
 
-1.2.5 (2026-05-05)
+1.3.2 (2026-05-05)
+------------------
+* Workaround for a bug in Boost 1.90 any_range included in Ubuntu Resolute (`#424 <https://github.com/locusrobotics/fuse/issues/424>`_)
+  Boost versions 1.88 - 1.90 are missing a header include for any_range.hpp or any_iterator.hpp. The workaround is to include the missing header before including one of the affect headers.
+* Contributors: Stephen Williams
+
+1.3.1 (2025-08-29)
+------------------
+
+1.3.0 (2025-07-28)
 ------------------
 
 1.2.4 (2025-07-28)
