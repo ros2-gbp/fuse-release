@@ -213,6 +213,13 @@ void FixedLagSmoother::optimizationLoop()
     // Optimize
     {
       std::lock_guard<std::mutex> lock(optimization_mutex_);
+      // Make sure stop was not called while we were trying to acquire optimization mutex
+      if (!started_) {
+        RCLCPP_DEBUG_STREAM(
+          logger_,
+          "Optimizer stopped while trying to acquire optimization_mutex_. Skipping optimization.");
+        continue;
+      }
       // Apply motion models
       auto new_transaction = fuse_core::Transaction::make_shared();
       // DANGER: processQueue obtains a lock from the pending_transactions_mutex_
@@ -252,22 +259,27 @@ void FixedLagSmoother::optimizationLoop()
       // Optimize the entire graph
       summary_ = graph_->optimize(params_.solver_options);
 
-      // Optimization is complete. Notify all the things about the graph changes.
-      const auto new_transaction_stamp = new_transaction->stamp();
-      notify(std::move(new_transaction), graph_->clone());
-
       // Abort if optimization failed. Not converging is not a failure because the solution found is
       // usable.
       if (!summary_.IsSolutionUsable()) {
+        std::ostringstream oss;
+        oss << "Graph:\n";
+        graph_->print(oss);
+        oss << "\nTransaction:\n";
+        new_transaction->print(oss);
+
         RCLCPP_FATAL_STREAM(
           logger_,
           "Optimization failed after updating the graph with the transaction with timestamp "
-            << new_transaction_stamp.nanoseconds() <<
-            ". Leaving optimization loop and requesting node shutdown...");
+            << new_transaction->stamp().nanoseconds() <<
+            ". Leaving optimization loop and requesting node shutdown...\n" << oss.str());
         RCLCPP_INFO(logger_, summary_.FullReport().c_str());
         rclcpp::shutdown();
         break;
       }
+
+      // Optimization is complete. Notify all the things about the graph changes.
+      notify(std::move(new_transaction), graph_->clone());
 
       // Compute a transaction that marginalizes out those variables.
       lag_expiration_ = computeLagExpirationTime();
@@ -416,7 +428,7 @@ void FixedLagSmoother::processQueue(
           << lag_expiration.nanoseconds() << ". The queued transaction with timestamp "
           << element.stamp().nanoseconds() << " from sensor " << element.sensor_name
           << " has a minimum involved timestamp of " << min_stamp.nanoseconds() << ", which is "
-          << (lag_expiration - min_stamp).nanoseconds()
+          << (lag_expiration - min_stamp).seconds()
           << " seconds too old. Ignoring this transaction.");
       transaction_riter = erase(pending_transactions_, transaction_riter);
     } else if (  // NOLINT
@@ -442,7 +454,7 @@ void FixedLagSmoother::processQueue(
           "The queued transaction with timestamp "
             << element.stamp().nanoseconds() << " and maximum involved stamp of "
             << max_stamp.nanoseconds() << " from sensor " << element.sensor_name
-            << " could not be processed after " << (current_time - max_stamp).nanoseconds()
+            << " could not be processed after " << (current_time - max_stamp).seconds()
             << " seconds, which is greater than the 'transaction_timeout' value of "
             << params_.transaction_timeout.nanoseconds() << ". Ignoring this transaction.");
         transaction_riter = erase(pending_transactions_, transaction_riter);
@@ -460,21 +472,21 @@ bool FixedLagSmoother::resetServiceCallback(
   std::shared_ptr<std_srvs::srv::Empty::Response>
 )
 {
-  // Tell all the plugins to stop
-  stopPlugins();
+  started_ = false;
+  ignited_ = false;
   // Reset the optimizer state
   {
     std::lock_guard<std::mutex> lock(optimization_requested_mutex_);
     optimization_request_ = false;
   }
-  started_ = false;
-  ignited_ = false;
   setStartTime(rclcpp::Time(0, 1, RCL_ROS_TIME));  // NOTE(CH3): INITIALIZED!
   // DANGER: The optimizationLoop() function obtains the lock optimization_mutex_ lock and the
   //         pending_transactions_mutex_ lock at the same time. We perform a parallel locking scheme
   //         here to prevent the possibility of deadlocks.
   {
     std::lock_guard<std::mutex> lock(optimization_mutex_);
+    // Tell all the plugins to stop
+    stopPlugins();
     // Clear all pending transactions
     {
       std::lock_guard<std::mutex> lock(pending_transactions_mutex_);
@@ -595,37 +607,56 @@ diagnostic_msgs::msg::DiagnosticStatus makeDiagnosticStatus(
 
   return status;
 }
-
 /**
- * @brief Helper function to generate the diagnostic status for each optimization termination type
+ * @brief Helper function to map termination type to string
  *
- * The termination type -> diagnostic status mapping is as follows:
- *
- * - CONVERGENCE, USER_SUCCESS -> OK
- * - NO_CONVERGENCE            -> WARN
- * - FAILURE, USER_FAILURE     -> ERROR (default)
- *
- * @param[in] termination_type The optimization termination type
- * @return The diagnostic status with the level and message corresponding to the optimization
- *         termination type
+ * @param[in] termination_type The termination type
+ * @return the string format of the termination type
  */
-diagnostic_msgs::msg::DiagnosticStatus terminationTypeToDiagnosticStatus(
-  const ceres::TerminationType termination_type)
+std::string mapCeresLogToDiagLog(const ceres::TerminationType & termination_type)
 {
   switch (termination_type) {
     case ceres::TerminationType::CONVERGENCE:
+      return "CONVERGENCE";
     case ceres::TerminationType::USER_SUCCESS:
-      return makeDiagnosticStatus(
-        diagnostic_msgs::msg::DiagnosticStatus::OK,
-        "Optimization converged");
+      return "USER_SUCCESS";
     case ceres::TerminationType::NO_CONVERGENCE:
-      return makeDiagnosticStatus(
-        diagnostic_msgs::msg::DiagnosticStatus::WARN,
-        "Optimization didn't converge");
+      return "NO_CONVERGENCE";
+    case ceres::TerminationType::FAILURE:
+      return "FAILURE";
+    case ceres::TerminationType::USER_FAILURE:
+      return "USER_FAILURE";
     default:
-      return makeDiagnosticStatus(
-        diagnostic_msgs::msg::DiagnosticStatus::ERROR,
-        "Optimization failed");
+      return "FAILURE";
+  }
+}
+
+/**
+ * @brief Helper function to check if a string is contained in the list
+ *
+ * @param[in] vec The list of strings
+ * @param[in] str The str to search
+ * @return true if contains, false otherwise
+ */
+inline bool contains(const std::vector<std::string> & vec, const std::string & str)
+{
+  return std::find(vec.begin(), vec.end(), str) != vec.end();
+}
+
+diagnostic_msgs::msg::DiagnosticStatus FixedLagSmoother::terminationTypeToDiagnosticStatus(
+  const ceres::TerminationType termination_type, const std::vector<std::string> & diag_warnings,
+  const std::vector<std::string> & diag_errors)
+{
+  std::string diag_level = mapCeresLogToDiagLog(termination_type);
+  if (contains(diag_errors, diag_level)) {
+    return makeDiagnosticStatus(
+      diagnostic_msgs::msg::DiagnosticStatus::ERROR, "Optimization failed");
+  } else if (contains(diag_warnings, diag_level)) {
+    return makeDiagnosticStatus(
+      diagnostic_msgs::msg::DiagnosticStatus::WARN, "Optimization didn't converge");
+  } else {
+    return makeDiagnosticStatus(
+      diagnostic_msgs::msg::DiagnosticStatus::OK, "Optimization converged");
   }
 }
 
@@ -665,7 +696,10 @@ void FixedLagSmoother::setDiagnostics(diagnostic_updater::DiagnosticStatusWrappe
       status.add("Initial Cost", summary.initial_cost);
       status.add("Final Cost", summary.final_cost);
 
-      status.mergeSummary(terminationTypeToDiagnosticStatus(summary.termination_type));
+      status.mergeSummary(
+        terminationTypeToDiagnosticStatus(summary.termination_type,
+          params_.diagnostic_warning_status,
+          params_.diagnostic_error_status));
     }
 
     // Add time since the last optimization request time. This is useful to detect if no
