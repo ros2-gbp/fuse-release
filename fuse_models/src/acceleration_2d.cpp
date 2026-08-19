@@ -31,8 +31,6 @@
  *  ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
  *  POSSIBILITY OF SUCH DAMAGE.
  */
-#include <memory>
-
 #include <fuse_core/transaction.hpp>
 #include <fuse_core/uuid.hpp>
 #include <fuse_models/acceleration_2d.hpp>
@@ -88,15 +86,13 @@ void Acceleration2D::onInit()
   }
 
   tf_buffer_ = std::make_unique<tf2_ros::Buffer>(clock_);
-  if (!params_.target_frame.empty()) {
-    tf_listener_ = std::make_unique<tf2_ros::TransformListener>(
-      *tf_buffer_,
-      interfaces_.get_node_base_interface(),
-      interfaces_.get_node_logging_interface(),
-      interfaces_.get_node_parameters_interface(),
-      interfaces_.get_node_topics_interface()
-    );
-  }
+  tf_listener_ = std::make_unique<tf2_ros::TransformListener>(
+    *tf_buffer_,
+    interfaces_.get_node_base_interface(),
+    interfaces_.get_node_logging_interface(),
+    interfaces_.get_node_parameters_interface(),
+    interfaces_.get_node_topics_interface()
+  );
 }
 
 void Acceleration2D::onStart()

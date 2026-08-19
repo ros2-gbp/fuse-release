@@ -20,7 +20,6 @@ find_package(rclcpp_components REQUIRED)
 
 find_package(Ceres REQUIRED)
 find_package(Eigen3 REQUIRED)
-find_package(gtest_vendor)
 
 include(boost-extras.cmake)
 
