@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 3.16)
+cmake_minimum_required(VERSION 3.5)
 project(fuse_msgs)
 
 if(NOT CMAKE_CXX_STANDARD)
